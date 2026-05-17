@@ -27,5 +27,30 @@ namespace PatternLabs.Singleton {
 
     // Public static property to access the single instance
     public static ConfigurationManager Instance => _instance.Value;
+
+    /// <summary>
+    /// Retrieves a setting value by its configuration key.
+    /// </summary>
+    public string GetSetting(string key) {
+      return _settings.TryGetValue(key, out var value) ? value : "Настройка не найдена";
+    }
+
+    /// <summary>
+    /// Updates or creates a configuration setting.
+    /// </summary>
+    public void SetSetting(string key, string value) {
+      _settings[key] = value;
+    }
+
+    /// <summary>
+    /// Outputs all current settings to the console application.
+    /// </summary>
+    public void PrintAllSettings() {
+      Console.WriteLine("=== Текущая конфигурация системы ===");
+      foreach (var setting in _settings) {
+        Console.WriteLine($"[{setting.Key}] : {setting.Value}");
+      }
+      Console.WriteLine("====================================");
+    }
   }
 }

@@ -32,7 +32,9 @@ namespace PatternLabs.Singleton {
     /// Retrieves a setting value by its configuration key.
     /// </summary>
     public string GetSetting(string key) {
-      return _settings.TryGetValue(key, out var value) ? value : "Setting not found";
+      // Fixed per item 30 of the rules: explicit type instead of var
+      string value;
+      return _settings.TryGetValue(key, out value) ? value : "Setting not found";
     }
 
     /// <summary>
@@ -47,7 +49,7 @@ namespace PatternLabs.Singleton {
     /// </summary>
     public void PrintAllSettings() {
       Console.WriteLine("=== Current System Configuration ===");
-      foreach (var setting in _settings) {
+      foreach (KeyValuePair<string, string> setting in _settings) {
         Console.WriteLine($"[{setting.Key}] : {setting.Value}");
       }
       Console.WriteLine("====================================");

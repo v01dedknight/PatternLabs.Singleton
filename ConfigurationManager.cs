@@ -16,13 +16,12 @@ namespace PatternLabs.Singleton {
 
     // Private constructor prevents instantiation from outside the class
     private ConfigurationManager() {
-      _settings = new Dictionary<string, string>();
-
-      // Load default configuration values
-      _settings["AppName"] = "PatternLabs System";
-      _settings["Version"] = "1.0.0";
-      _settings["Theme"] = "Dark Fantasy";
-      _settings["MaxConnections"] = "100";
+      _settings = new Dictionary<string, string> {
+        { "AppName", "PatternLabs System" },
+        { "Version", "1.0.0" },
+        { "Theme", "Dark Fantasy" },
+        { "MaxConnections", "100" }
+      };
     }
 
     // Public static property to access the single instance
@@ -32,9 +31,8 @@ namespace PatternLabs.Singleton {
     /// Retrieves a setting value by its configuration key.
     /// </summary>
     public string GetSetting(string key) {
-      // Fixed per item 30 of the rules: explicit type instead of var
-      string value;
-      return _settings.TryGetValue(key, out value) ? value : "Setting not found";
+      // Try to get the value from the settings dictionary, return a default message if not found
+      return _settings.TryGetValue(key, out string value) ? value : "Setting not found";
     }
 
     /// <summary>

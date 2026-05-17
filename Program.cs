@@ -6,21 +6,28 @@ namespace PatternLabs.Singleton {
       Console.Title = "PatternLabs: Singleton Demo";
       Console.WriteLine("Запуск демонстрации Singleton (.NET Framework 4.7.2)...\n");
 
-      // Accessing the configuration for the first time (Module A simulation)
+      // Getting the singleton instance and showing initial settings
       Console.WriteLine("Шаг 1: Обращение к конфигурации из Модуля А");
       ConfigurationManager config1 = ConfigurationManager.Instance;
       config1.PrintAllSettings();
 
-      // Modifying state from one part of the application
+      // Change a setting in Module A and show that it affects the same instance
       Console.WriteLine("\nШаг 2: Изменение настройки в Модуле А (смена темы на Light)...");
       config1.SetSetting("Theme", "Light");
 
-      // Verifying that changes are reflected in another simulated module
+      // Show that the change is reflected when accessed from Module B, proving that both modules share the same instance
       Console.WriteLine("\nШаг 3: Обращение к конфигурации из Модуля B");
       ConfigurationManager config2 = ConfigurationManager.Instance;
       Console.WriteLine($"Текущая тема, прочитанная модулем B: {config2.GetSetting("Theme")}");
 
-      // Temporary holding console
+      // Strict proof of Singleton pattern pattern compliance (reference validation)
+      Console.WriteLine("\nШаг 4: Проверка идентичности объектов в памяти");
+      if (ReferenceEquals(config1, config2)) {
+        Console.WriteLine(">> УСПЕХ: config1 и config2 ссылаются на один и тот же объект.");
+        Console.WriteLine(">> Паттерн Singleton работает корректно.");
+      }
+
+      Console.WriteLine("\nНажмите Enter для выхода...");
       Console.ReadLine();
     }
   }

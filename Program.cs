@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace PatternLabs.Singleton {
   class Program {
@@ -11,8 +10,8 @@ namespace PatternLabs.Singleton {
       Console.WriteLine("Step 1: Accessing the configuration from Module A");
       ConfigurationManager config1 = ConfigurationManager.Instance;
 
-      // Выводим настройки через локальный метод UI-слоя
-      PrintSettings(config1.GetAllSettings());
+      // Метод GetSettingsReport формирует строку, а Console.WriteLine в UI-слое её выводит
+      Console.WriteLine(config1.GetSettingsReport());
 
       // Modifying state from one part of the application
       Console.WriteLine("\nStep 2: Changing a setting in Module A (switching the theme to Light)...");
@@ -32,17 +31,6 @@ namespace PatternLabs.Singleton {
 
       Console.WriteLine("\nPress Enter to exit...");
       Console.ReadLine();
-    }
-
-    /// <summary>
-    /// Outputs all configuration settings to the console application.
-    /// </summary>
-    private static void PrintSettings(IReadOnlyDictionary<string, string> settings) {
-      Console.WriteLine("=== Current System Configuration ===");
-      foreach (KeyValuePair<string, string> setting in settings) {
-        Console.WriteLine($"[{setting.Key}] : {setting.Value}");
-      }
-      Console.WriteLine("====================================");
     }
   }
 }

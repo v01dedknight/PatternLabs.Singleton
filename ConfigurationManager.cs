@@ -52,5 +52,19 @@ namespace PatternLabs.Singleton {
     public IReadOnlyDictionary<string, string> GetAllSettings() {
       return _settings;
     }
+
+    /// <summary>
+    /// Builds a formatted string containing all current settings.
+    /// </summary>
+    public string GetSettingsReport() {
+      string report = "=== Current System Configuration ===" + Environment.NewLine;
+
+      foreach (KeyValuePair<string, string> setting in _settings) {
+        report += $"[{setting.Key}] : {setting.Value}" + Environment.NewLine;
+      }
+
+      report += "====================================";
+      return report;
+    }
   }
 }

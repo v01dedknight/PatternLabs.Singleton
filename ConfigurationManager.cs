@@ -47,14 +47,10 @@ namespace PatternLabs.Singleton {
     }
 
     /// <summary>
-    /// Outputs all current settings to the console application.
+    /// Returns a read-only view of all current configuration settings.
     /// </summary>
-    public void PrintAllSettings() {
-      Console.WriteLine("=== Current System Configuration ===");
-      foreach (KeyValuePair<string, string> setting in _settings) {
-        Console.WriteLine($"[{setting.Key}] : {setting.Value}");
-      }
-      Console.WriteLine("====================================");
+    public IReadOnlyDictionary<string, string> GetAllSettings() {
+      return _settings;
     }
   }
 }

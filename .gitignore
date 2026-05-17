@@ -1,0 +1,17 @@
+## Ignore Visual Studio Temporary Files and Build Output
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Cc]heckout/
+[Rr]elease/
+x64/
+x86/
+build/
+bin/
+obj/
+
+# Visual Studio 2015/2017/2019/2022 cache directory
+.vs/

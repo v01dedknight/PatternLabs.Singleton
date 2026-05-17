@@ -32,7 +32,11 @@ namespace PatternLabs.Singleton {
     /// </summary>
     public string GetSetting(string key) {
       // Try to get the value from the settings dictionary, return a default message if not found
-      return _settings.TryGetValue(key, out string value) ? value : "Setting not found";
+      if (_settings.TryGetValue(key, out string value)) {
+        return value;
+      } else {
+        return "Setting not found";
+      }
     }
 
     /// <summary>

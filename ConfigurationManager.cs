@@ -32,7 +32,7 @@ namespace PatternLabs.Singleton {
     /// Retrieves a setting value by its configuration key.
     /// </summary>
     public string GetSetting(string key) {
-      return _settings.TryGetValue(key, out var value) ? value : "Настройка не найдена";
+      return _settings.TryGetValue(key, out var value) ? value : "Setting not found";
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace PatternLabs.Singleton {
     /// Outputs all current settings to the console application.
     /// </summary>
     public void PrintAllSettings() {
-      Console.WriteLine("=== Текущая конфигурация системы ===");
+      Console.WriteLine("=== Current System Configuration ===");
       foreach (var setting in _settings) {
         Console.WriteLine($"[{setting.Key}] : {setting.Value}");
       }

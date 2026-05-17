@@ -4,30 +4,30 @@ namespace PatternLabs.Singleton {
   class Program {
     static void Main(string[] args) {
       Console.Title = "PatternLabs: Singleton Demo";
-      Console.WriteLine("Запуск демонстрации Singleton (.NET Framework 4.7.2)...\n");
+      Console.WriteLine("Launch Demonstration Singleton (.NET Framework 4.7.2)...\n");
 
       // Getting the singleton instance and showing initial settings
-      Console.WriteLine("Шаг 1: Обращение к конфигурации из Модуля А");
+      Console.WriteLine("Step 1: Accessing the configuration from Module A");
       ConfigurationManager config1 = ConfigurationManager.Instance;
       config1.PrintAllSettings();
 
       // Change a setting in Module A and show that it affects the same instance
-      Console.WriteLine("\nШаг 2: Изменение настройки в Модуле А (смена темы на Light)...");
+      Console.WriteLine("\nStep 2: Changing a setting in Module A (switching the theme to Light)...");
       config1.SetSetting("Theme", "Light");
 
       // Show that the change is reflected when accessed from Module B, proving that both modules share the same instance
-      Console.WriteLine("\nШаг 3: Обращение к конфигурации из Модуля B");
+      Console.WriteLine("\nStep 3: Accessing the configuration from Module B");
       ConfigurationManager config2 = ConfigurationManager.Instance;
-      Console.WriteLine($"Текущая тема, прочитанная модулем B: {config2.GetSetting("Theme")}");
+      Console.WriteLine($"Current theme read by Module B: {config2.GetSetting("Theme")}");
 
       // Strict proof of Singleton pattern pattern compliance (reference validation)
-      Console.WriteLine("\nШаг 4: Проверка идентичности объектов в памяти");
+      Console.WriteLine("\nStep 4: Checking object identity in memory");
       if (ReferenceEquals(config1, config2)) {
-        Console.WriteLine(">> УСПЕХ: config1 и config2 ссылаются на один и тот же объект.");
-        Console.WriteLine(">> Паттерн Singleton работает корректно.");
+        Console.WriteLine(">> SUCCESS: config1 and config2 refer to the same object.");
+        Console.WriteLine(">> Singleton pattern is working correctly.");
       }
 
-      Console.WriteLine("\nНажмите Enter для выхода...");
+      Console.WriteLine("\nPress Enter to exit...");
       Console.ReadLine();
     }
   }
